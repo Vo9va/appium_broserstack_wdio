@@ -1,6 +1,6 @@
 exports.config = {
-  user: process.env.BROWSERSTACK_USERNAME || 'bsuser_9nPqRk',
-  key: process.env.BROWSERSTACK_ACCESS_KEY || 'iK9jbgmBBpMiCwosnViM',
+  user: process.env.BROWSERSTACK_USERNAME || 'vpvpvp_ugz2ix',
+  key: process.env.BROWSERSTACK_ACCESS_KEY || '8SXBNgFzAm452uomFZWi',
 
   updateJob: false,
   specs: [
@@ -29,6 +29,6 @@ exports.config = {
   framework: 'mocha',
   mochaOpts: {
     ui: 'bdd',
-    timeout: 40000
+    timeout: 80000
   }
 };

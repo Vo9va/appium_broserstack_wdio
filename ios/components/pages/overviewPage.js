@@ -1,21 +1,24 @@
-import AbstractComponent from "../abstract.component";
-
-class OverviewPage extends AbstractComponent {
-  /** Selectors */
-  get $finishButton() {
-    return $(`~ test-FINISH`)
-  }
-
+class OverviewPage {
   //** Methods */
   async scrollDown() {
-    return await this.mobileScrollDown();
-  }
+    await browser.execute("mobile: scroll", { direction: 'down' });
+  };
 
   async clickFinishButton() {
-    return await this.waitThanClick(await this.$finishButton)
-  }
+    const finishButton = await $(`~test-FINISH`)
+    await finishButton.click()
+  };
 
   //** Assertions */
+  async checkThatTotalValueIsDisplayed() {
+    let firstCard =  await $(`~Total: $43.18`);
+    expect(await firstCard.isDisplayed()).toBeTruthy();
+  }
+
+  async checkThatSuccessfulTextIsDisplayed() {
+    let firstCard =  await $(`~THANK YOU FOR YOU ORDER`);
+    expect(await firstCard.isDisplayed()).toBeTruthy();
+  }
 }
 
-export const overviewPage = new OverviewPage();
+module.exports = new OverviewPage();

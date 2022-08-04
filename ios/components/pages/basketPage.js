@@ -1,21 +1,24 @@
-import AbstractComponent from "../abstract.component";
-
-class BasketPage extends AbstractComponent{
-  /** Selectors */
-  get $checkoutButton(){
-    return $(`~test-CHECKOUT`)
-  }
-
+class BasketPage{
   /** Methods */
   async scrollDown(){
-    return await this.mobileScrollDown();
-  }
+    await browser.execute("mobile: scroll", { direction: 'down' });
+  };
 
   async clickCheckoutButton(){
-    return await this.waitThanClick(await this.$checkoutButton)
-  }
+    const checkoutButton = await $(`~test-CHECKOUT`);
+    await checkoutButton.click();
+  };
 
   /** Assertions */
+  async checkThatFirstCardInBasketIsDisplayed() {
+    let firstCard =  await $(`~Sauce Labs Backpack`);
+    expect(await firstCard.isDisplayed()).toBeTruthy();
+  }
+
+  async checkThatSecondCardInBasketIsDisplayed() {
+    let firstCard =  await $(`~Sauce Labs Bike Light`);
+    expect(await firstCard.isDisplayed()).toBeTruthy();
+  }
 }
 
-export const basketPage = new BasketPage();
+module.exports = new BasketPage();

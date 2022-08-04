@@ -1,33 +1,19 @@
-import  AbstractComponent from "../abstract.component";
-
-class LoginPage extends AbstractComponent {
-    /** Selectors */
-  get $userNameField() {
-    return $(`~ test-Username`)
-  }
-
-  get $passwordField() {
-    return $(`~ Password`)
-  }
-
-  get $loginButton() {
-    return $(`~ test-LOGIN`)
-  }
-
+class LoginPage {
   /** Methods */
   async setUserName() {
-    return await this.waitThanSetValue(await this.$userNameField)
-  }
+    let userNameField = await $(`~test-Username`)
+    await userNameField.setValue("standard_user");
+  };
 
   async setPassword() {
-    return await this.waitThanSetValue(await this.$passwordField)
-  }
+    let passwordField = await $(`~Password`)
+    await passwordField.setValue("secret_sauce");
+  };
 
   async clickLoginButton() {
-    return await this.waitThanClick(await this.$loginButton)
-  }
-
-  /** Assertions */
+    let loginButton = await $(`~test-LOGIN`)
+    await loginButton.click();
+  };
 }
 
-export const loginPage = new LoginPage();
+module.exports = new LoginPage();

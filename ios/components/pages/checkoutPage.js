@@ -1,41 +1,24 @@
-import AbstractComponent from "../abstract.component";
-
-class CheckoutPage extends AbstractComponent{
-  /** Selectors */
-  get $firstNameField(){
-    return $(`~test-First Name`)
-  }
-
-  get $lastNameField(){
-    return $(`~test-Last Name`)
-  }
-
-  get $zipField(){
-    return $(`~test-Zip/Postal Code`)
-  }
-
-  get $continueButton(){
-    return $(`~test-CONTINUE`)
-  }
-
+class CheckoutPage {
   /** Methods */
   async setFirstName(){
-    return await this.waitThanSetValue(await this.$firstNameField);
-  }
+    const firstNameField = await $(`~test-First Name`);
+    await firstNameField.setValue("test")
+  };
 
   async setLastName(){
-    return await this.waitThanSetValue(await this.$lastNameField);
-  }
+    const lastNameField = await $(`~test-Last Name`);
+    await lastNameField.setValue("test");
+  };
 
   async setZipValue(){
-    return await this.waitThanSetValue(await this.$zipField);
-  }
+    const zipField = await $(`~test-Zip/Postal Code`);
+    await zipField.setValue("123456");
+  };
 
   async clickContinueButton(){
-    return await this.waitThanClick(await this.$continueButton);
-  }
-
-  /** Assertions */
+    const continueButton = await $(`~test-CONTINUE`);
+    await continueButton.click();
+  };
 }
 
-export const checkoutPage = new CheckoutPage();
+module.exports = new CheckoutPage();
